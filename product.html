@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SAFE PATH SOLUTIONS - Product Details</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            background-color: #f5f5f5;
+            min-height: 100vh; 
+        }
+        .header { 
+            background: rgba(51, 51, 51, 0.8); 
+            color: white; 
+            padding: 10px; 
+            text-align: center; 
+        }
+        .nav a { 
+            color: white; 
+            margin: 0 15px; 
+            text-decoration: none; 
+        }
+        .product-details { 
+            max-width: 900px; 
+            margin: 50px auto; 
+            padding: 20px; 
+            background: white; 
+            border: 1px solid #ddd; 
+            display: flex; 
+            gap: 30px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .product-image { 
+            width: 400px;
+            min-width: 400px;
+            height: 400px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .product-image img { 
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product-info { 
+            flex: 1; 
+        }
+        .product-info h1 { 
+            margin: 0 0 15px 0; 
+            font-size: 28px; 
+            color: #333;
+        }
+        .product-info .price { 
+            color: #e63946; 
+            font-size: 24px; 
+            margin: 10px 0 20px 0; 
+            font-weight: bold;
+        }
+        .product-info .description { 
+            color: #555; 
+            line-height: 1.6; 
+            margin-bottom: 25px;
+        }
+        .buy-btn { 
+            background: #007BFF; 
+            color: white; 
+            padding: 15px 30px; 
+            font-size: 16px; 
+            border: none; 
+            cursor: pointer; 
+            margin-top: 20px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .buy-btn:hover {
+            background: #0069d9;
+        }
+        .not-found {
+            text-align: center;
+            padding: 50px;
+            font-size: 24px;
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .product-details {
+                flex-direction: column;
+            }
+            .product-image {
+                width: 100%;
+                min-width: auto;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>SAFE PATH SOLUTIONS</h1>
+        <div class="nav">
+            <a href="home.html">Home</a>
+            <a href="#">Products</a>
+            <a href="about.html">About</a>
+            <a href="login.html">Login</a>
+        </div>
+    </div>
+    
+    <div class="product-details">
+        <div class="product-image">
+            <img src="/07.jpg" alt="Product Image" id="productImage">
+        </div>
+        <div class="product-info">
+            <h1 id="productName">Project Model</h1>
+            <p class="description" id="productDesc">Investing in our U-Turn Accident Prevention System is not just a step towards advanced road safety but also a cost-effective solution for city planners and traffic management authorities. Priced competitively, our system offers high value with minimal maintenance costs, making it an economical choice for long-term safety enhancements. For businesses and government organizations interested in adopting this innovative solution, we provide flexible purchase options, bulk discounts, and installation support. Click the "Buy Now" button to secure your system today, or contact us for a consultation to discuss how we can tailor our solution to your specific needs. Together, let’s make roads safer for everyone!.</p>
+            <button class="buy-btn" onclick="buyNow()">Contact Us</button>
+        </div>
+    </div>
+
+    <script>
+        // If you need dynamic product loading, use this:
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            
+            // Only modify the page if we have a product ID parameter
+            if (productId) {
+                const products = {
+                    '1': {
+                        name: 'Project Model ',
+                        price: '$199.99',
+                        desc: 'This is a revolutionary product designed for the future. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                        image: 'https://via.placeholder.com/400?text=Model+X'
+                    },
+                    '2': {
+                        name: 'Project Model Y',
+                        price: '$249.99',
+                        desc: 'Advanced version with improved features. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+                        image: 'https://via.placeholder.com/400?text=Model+Y'
+                    }
+                };
+
+                if (products[productId]) {
+                    const product = products[productId];
+                    document.getElementById('productName').innerText = product.name;
+                    document.getElementById('productPrice').innerText = product.price;
+                    document.getElementById('productDesc').innerText = product.desc;
+                    document.getElementById('productImage').src = product.image;
+                    document.getElementById('productImage').alt = product.name;
+                } else {
+                    document.querySelector('.product-details').innerHTML = 
+                        '<div class="not-found"><p>Product not found!</p><a href="#">Return to products</a></div>';
+                }
+            }
+        });
+
+        function buyNow() {
+            const productName = document.getElementById('productName').innerText;
+            const productPrice = document.getElementById('productPrice').innerText;
+            
+            alert(`Added to cart: ${productName} (${productPrice})\n\nYou would be redirected to checkout in a real application.`);
+            
+            // In a real application, you would:
+            // 1. Add to cart
+            // 2. Redirect to checkout
+            // window.location.href = `checkout.html?product=${encodeURIComponent(productName)}`;
+        }
+    </script>
+</body>
+</html>

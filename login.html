@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SAFE PATH SOLUTIONS - Login</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            background-image: url('/images/02.jpg');
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        }
+        .header { 
+            background: rgba(51, 51, 51, 0.8); 
+            color: white; 
+            padding: 10px; 
+            text-align: center; 
+            position: absolute; 
+            top: 0; 
+            width: 100%; 
+        }
+        .login-container { 
+            max-width: 400px; 
+            padding: 20px; 
+            border: 1px solid #ddd; 
+            background: rgba(112, 111, 111, 0.7); 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            border-radius: 5px; 
+        }
+        .login-container h2 { 
+            font-size: 24px; 
+            margin-bottom: 20px; 
+            color: #070b10; 
+        }
+        .login-container input { 
+            width: 100%; 
+            padding: 10px; 
+            margin: 10px 0; 
+            box-sizing: border-box; 
+            border: 1px solid #a6a6a6; 
+            border-radius: 3px; 
+        }
+        .login-btn { 
+            background: #1a73e8; 
+            color: rgb(13, 9, 9); 
+            padding: 10px; 
+            border: none; 
+            border-radius: 3px; 
+            width: 100%; 
+            cursor: pointer; 
+            font-weight: bold; 
+        }
+        .login-btn:hover { 
+            background: #1557b0; 
+        }
+        .nav a { 
+            color: white; 
+            margin: 0 15px; 
+            text-decoration: none; 
+        }
+        .error { 
+            color: #d93025; 
+            font-size: 14px; 
+            margin-top: 10px; 
+            display: none; 
+        }
+        .register-link { 
+            margin-top: 15px; 
+            text-align: center; 
+        }
+        .register-link a { 
+            color: #0c0f14; 
+            text-decoration: none; 
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>SAFE PATH SOLUTIONS</h1>
+        <div class="nav">
+            <a href="home.html">Home</a>
+            <a href="/product.html">Products</a>
+            <a href="/about.html">About</a>
+            <a href="login.html">Login</a>
+        </div>
+    </div>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" class="login-btn">Login</button>
+            <p id="errorMsg" class="error">Invalid email or password.</p>
+        </form>
+        <div class="register-link">
+            <p>Don’t have an account? <a href="register.html">Register</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const errorMsg = document.getElementById('errorMsg');
+
+            const user = users.find(u => u.email === email && u.password === password);
+            if (user) {
+                alert('Login successful! Redirecting to home page...');
+                window.location.href = 'home.html';
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
